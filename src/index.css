@@ -1,18 +1,13 @@
 :root {
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: 'DM Sans', 'Inter', system-ui, -apple-system, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: #000;
-  background-color: #fff;
+  color: #ebdbb2;
+  background-color: #282828;
 }
 
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-}
-
-a {
-  color: #000;
-  text-decoration: underline;
 }
