@@ -57,8 +57,9 @@
 }
 
 .current-sol-temp-range {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1.5rem;
   font-size: 1rem;
   font-weight: bold;
   margin-bottom: 3rem;
