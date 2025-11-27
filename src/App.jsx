@@ -4,7 +4,7 @@ import './App.css'
 function App() {
   const [marsWeatherData, setMarsWeatherData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const API_KEY = 'bHBDhMJlfVc4mYYMCh9ZjabHd5Mcl5wS81O3sdfS'; 
+  const API_KEY = 'bHBDhMJlfVc4mYYMCh9ZjabHd5Mcl5wS81O3sdfS';
 
   useEffect(() => {
     fetch(`https://api.nasa.gov/insight_weather/?api_key=${API_KEY}&feedtype=json&ver=1.0`)
@@ -49,10 +49,10 @@ function App() {
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { 
-      year: 'numeric', 
-      month: 'short', 
-      day: 'numeric' 
+    return date.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
     });
   };
 
@@ -64,6 +64,7 @@ function App() {
       <div className="weather-app">
         <header className="weather-header">
           <h1 className="app-title">Mars Weather</h1>
+          <p className="data-location">Data from NASA's <a href="https://mars.nasa.gov/insight/weather/" target="_blank" rel="noopener noreferrer">InSight Lander</a>.</p>
         </header>
 
         <hr role="presentation" />
@@ -76,9 +77,9 @@ function App() {
           {currentSol && (
             <div className="current-sol">
               <div>
-              Sol {currentSol.sol} {currentSol.First_UTC && (
+                Sol {currentSol.sol} {currentSol.First_UTC && (
                   <span>({formatDate(currentSol.First_UTC)})</span>
-                )} 
+                )}
               </div>
 
               <div className="current-sol-content">
@@ -86,13 +87,16 @@ function App() {
                   {currentSol.AT?.av ? `${currentSol.AT.av.toFixed(1)}°` : 'N/A'}
                 </div>
 
+
                 <div className="current-sol-temp-range">
-                 Orange, dusty, and thin.{' '}
-                  {currentSol.AT?.mn && currentSol.AT?.mx ? (
-                    <span>
-                      {currentSol.AT.mn.toFixed(1)}° / {currentSol.AT.mx.toFixed(1)}°
-                    </span>
-                  ) : null}
+                  <div>Orange, dusty, and thin.</div>
+                  <div>
+                    {currentSol.AT?.mn && currentSol.AT?.mx ? (
+                      <span>
+                        {currentSol.AT.mn.toFixed(1)}° / {currentSol.AT.mx.toFixed(1)}°
+                      </span>
+                    ) : null}
+                  </div>
                 </div>
               </div>
 
@@ -113,56 +117,33 @@ function App() {
             </div>
           )}
 
+          LAST 7 SOLS
+          <hr role="presentation"></hr>
           {previousSols.length > 0 && (
-            <div className="sols-container">
-              {previousSols.map((solData) => (
-                <div key={solData.sol} className="sol-card">
-                  <div className="sol-header">
-                    <h2 className="sol-number">Sol {solData.sol}</h2>
-                    {solData.First_UTC && (
-                      <div className="sol-date">{formatDate(solData.First_UTC)}</div>
-                    )}
-                  </div>
-
-                  <div className="sol-content">
-                    <div className="sol-main-metric">
-                      <div className="sol-temp">
-                        {solData.AT?.av ? `${solData.AT.av.toFixed(1)}°C` : 'N/A'}
-                      </div>
-                      <div className="sol-temp-range">
-                        {solData.AT?.mn && solData.AT?.mx ? (
-                          <span>
-                            {solData.AT.mn.toFixed(1)}° / {solData.AT.mx.toFixed(1)}°
-                          </span>
-                        ) : null}
-                      </div>
-                    </div>
-
-                    <div className="sol-metrics">
-                      <div className="sol-metric">
-                        <span className="metric-label">Wind</span>
-                        <span className="metric-value">
-                          {solData.HWS?.av ? `${solData.HWS.av.toFixed(1)} m/s` : 'N/A'}
-                        </span>
-                      </div>
-                      <div className="sol-metric">
-                        <span className="metric-label">Pressure</span>
-                        <span className="metric-value">
-                          {solData.PRE?.av ? `${solData.PRE.av.toFixed(0)} Pa` : 'N/A'}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
+            <table className="sols-table">
+              <thead>
+                <tr>
+                  <th>Sol</th>
+                  <th>UTC Date</th>
+                  <th>Temperature</th>
+                  <th>Wind</th>
+                  <th>Pressure</th>
+                </tr>
+              </thead>
+              <tbody>
+                {previousSols.map((solData) => (
+                  <tr key={solData.sol}>
+                    <td>{solData.sol}</td>
+                    <td>{solData.First_UTC ? formatDate(solData.First_UTC) : 'N/A'}</td>
+                    <td>{solData.AT?.av ? `${solData.AT.av.toFixed(1)}°` : 'N/A'}</td>
+                    <td>{solData.HWS?.av ? `${solData.HWS.av.toFixed(1)} m/s` : 'N/A'}</td>
+                    <td>{solData.PRE?.av ? `${solData.PRE.av.toFixed(0)} Pa` : 'N/A'}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           )}
         </div>
-
-        <footer>
-          <p className="data-location">Data from NASA's <a href="https://mars.nasa.gov/insight/weather/" target="_blank" rel="noopener noreferrer">InSight Lander</a></p>
-          <p>made by @emileenoh (github)</p>
-        </footer>
       </div>
     </div>
   );

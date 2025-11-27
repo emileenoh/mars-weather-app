@@ -1,6 +1,6 @@
 .app-container {
   padding: 2rem;
-  max-width: 800px;
+  max-width: 600px;
   margin: 0 auto;
 }
 
@@ -30,8 +30,8 @@
 
 .weather-location {
   font-weight: bold;
-  font-size: 1.5rem;
-  margin-bottom: 0.4rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
 }
 
 .current-sol {
@@ -50,15 +50,18 @@
 }
 
 .current-sol-temp {
-  font-size: 5rem;
-  font-weight: 800;
+  font-size: 6rem;
+  font-weight: bolder;
   line-height: 1;
   padding: 2rem 0;
 }
 
 .current-sol-temp-range {
+  display: flex;
+  justify-content: space-between;
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: bold;
+  margin-bottom: 3rem;
 }
 
 .current-sol-metrics {
@@ -83,77 +86,30 @@
   font-weight: 400;
 }
 
-.sols-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.sols-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
 }
 
-.sol-card {
-  padding: 0;
-}
-
-.sol-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  margin-bottom: 1rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 1px solid #ddd;
-}
-
-.sol-number {
-  margin: 0;
-  font-size: 1rem;
-  font-weight: 400;
-}
-
-.sol-date {
-  font-size: 0.85rem;
-  font-weight: 400;
-}
-
-.sol-content {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-.sol-main-metric {
+.sols-table thead {
   text-align: left;
 }
 
-.sol-temp {
-  font-size: 1.5rem;
+.sols-table th {
   font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 0.25rem;
-}
-
-.sol-temp-range {
   font-size: 0.85rem;
-  font-weight: 400;
+  padding: 0.5rem 1rem 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
-.sol-metrics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1rem;
+.sols-table tbody tr {
+  border: none;
 }
 
-.sol-metric {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.metric-label {
-  font-size: 0.75rem;
-  font-weight: 400;
-}
-
-.metric-value {
+.sols-table td {
+  padding: 0.75rem 1rem 0.75rem 0;
   font-size: 0.9rem;
   font-weight: 400;
 }
