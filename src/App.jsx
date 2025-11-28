@@ -124,8 +124,8 @@ function App() {
               <thead>
                 <tr>
                   <th>Sol</th>
-                  <th>UTC Date</th>
-                  <th>Temperature</th>
+                  <th>Date</th>
+                  <th>Temp</th>
                   <th>Wind</th>
                   <th>Pressure</th>
                 </tr>
